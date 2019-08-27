@@ -1,0 +1,36 @@
+<div>
+  <br>
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Sign Up</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]="loginForm" class="edit-form">
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Enter Name" formControlName="name" #name>
+        <div *ngIf="loginForm.get('name').hasError('required') && loginForm.get('name').touched" class="validationCheck">Name is required</div>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Enter Mobile Number" formControlName="mobileNumber" #mobileNumber>
+        <div *ngIf="loginForm.get('mobileNumber').hasError('required') && loginForm.get('mobileNumber').touched" class="validationCheck">Mobile Number is required</div>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Enter Email Address" formControlName="emailAddress" #emailAddress>
+        <div *ngIf="loginForm.get('emailAddress').hasError('required') && loginForm.get('emailAddress').touched" class="validationCheck">Email Address is required</div>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Enter Password" formControlName="password" #password>
+        <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched" class="validationCheck">Password is required</div>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Confirm Password" formControlName="confirmPassword" #confirmPassword>
+        <div *ngIf="loginForm.get('confirmPassword').hasError('required') && loginForm.get('confirmPassword').touched" class="validationCheck">Please confirm the password again</div>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <br><br>
+      <!-- <button mat-raised-button color="accent" routerLink="/register">Register</button>&nbsp; -->
+      <button type="submit" (click)="registerAccount(name.value, mobileNumber.value, emailAddress.value, password.value)" [disabled]="loginForm.pristine || loginForm.invalid" mat-raised-button color="primary">Register</button>
+    </form>
+  </mat-card>
+</div>

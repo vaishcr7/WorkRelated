@@ -1,0 +1,45 @@
+<div class="table-container">
+    <br/>
+    <mat-card>
+        <button mat-raised-button color="primary" routerLink="/createAddress" >Create Address</button>
+        <br><br>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-table #addressTable [dataSource]="addresses">
+            <ng-container matColumnDef="address">
+                <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.address}}</mat-cell>  
+            </ng-container>
+            <ng-container matColumnDef="city">
+                    <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{element.city}}</mat-cell>  
+            </ng-container>
+            <ng-container matColumnDef="state">
+                        <mat-header-cell *matHeaderCellDef>State</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.state}}</mat-cell>  
+            </ng-container>
+            <ng-container matColumnDef="pin_code">
+                    <mat-header-cell *matHeaderCellDef>Pin Code</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{element.pin_code}}</mat-cell>  
+            </ng-container>
+            <ng-container matColumnDef="phoneNumber">
+                <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.phoneNumber}}</mat-cell>  
+            </ng-container>
+            <ng-container matColumnDef="userInfo">
+                <mat-header-cell *matHeaderCellDef>User Info</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.userInfo}}</mat-cell>  
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-button color="primary" (click)="editAddress(element._id)">Edit</button>
+                    <button mat-button color="warn" (click)="deleteAddress(element._id)">Delete</button>
+                </mat-cell>  
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <button mat-button color="primary" (click)="gotoCardsSection()">Cards</button>
+    </mat-card>
+</div>
