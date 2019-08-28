@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
 export class UserLoginService {
 
   uri='http://localhost:4000';
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private cookieService:CookieService) { }
 
   getEmailId(emailId:String){
     console.log("inside service method getEmailId for emailId: "+emailId);
@@ -60,6 +61,23 @@ export class UserLoginService {
     };
     console.log("sending this from service class: "+user.name);
     return this.http.post(this.uri+'/users/add',user);
+  }
+
+  getAccountDetails(userName:String){
+    console.log("inside service method getAccountDetails for userName: "+userName);
+    let t= this.http.get(this.uri+'/users/userName/'+userName);
+    // console.log("t inside service method is "+JSON.stringify(t));
+    return t;
+  }
+  updateAccountDetails(userName:String,password:String,emailId:String,mobileNumber:String){
+    console.log("inside service method for update user account details of "+userName+" and pno= "+password);
+    const user={
+      name:userName,
+      password:password,
+      emailAddress:emailId,
+      mobileNumber:mobileNumber
+    };
+    return this.http.post(this.uri+'/users/update/'+userName,user);
   }
 
 }

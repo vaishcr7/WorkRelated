@@ -61,6 +61,30 @@ router.route('/users/:emailId').get((req,res)=>{
     // });
 });
 
+router.route('/users/userName/:userName').get((req,res)=>{
+    let userNameToSearchFor=req.params.userName;
+    console.log("backend handling userName: "+userNameToSearchFor);
+    User.find({name:userNameToSearchFor})
+    .then((user)=>
+        {
+            console.log(" found the user with same name , user: "+user[0].name+" and password: "+user[0].password);
+            // return (new Error(' found another user with same emailaddress'));
+            // res.send(404).statusMessage('fail');
+            // res.end();
+            res.write(JSON.stringify(user[0]));
+            res.end();
+        }
+    )
+    .catch((err)=>
+        // else
+            {
+                res.json({user:null});
+                res.end();
+            }
+        );
+    // });
+});
+
 router.route('/users/add').post((req,res)=>{
     console.log("body is "+JSON.stringify(req.body));
     const name=req.body.name;
@@ -82,6 +106,40 @@ router.route('/users/add').post((req,res)=>{
         // console.log(err);
         res.status(400).send(err);
     });
+});
+
+router.route('/users/update/:userName').post((req,res)=>{
+    let fullName=req.params.userName;
+    let splitName =fullName.split(",");
+    let userNameToUpdate=splitName[1]+"";
+    console.log("backend handling userName: "+userNameToUpdate);
+    console.log("backend handling initalName: "+splitName[0]);
+    User.find({name:splitName[0]})
+    .then((user)=>{
+            console.log("got this "+user);
+            user.name=userNameToUpdate;
+            user.password=req.body.password;
+            user.emailAddress=req.body.emailAddress;
+            user.mobileNumber=req.body.mobileNumber;
+            console.log("updating name: "+user.name);
+            console.log("updating emailid: "+req.body.emailAddress);
+            console.log("updating mobile number: "+req.body.mobileNumber);
+            console.log("updating password: "+req.body.password);
+            let instanceUser=new User({
+                name:user.name,
+                password:user.password,
+                emailAddress:user.emailAddress,
+                mobileNumber:user.mobileNumber
+            })
+            instanceUser.save()
+            .then(user=>{
+                res.json('Update Done');
+            })
+            .catch(err=>{
+                res.status(400).send('Update failed');
+            });
+        })
+    .catch(err=>{console.log(err);});
 });
 
 router.route('/addresses').get((req,res)=>{

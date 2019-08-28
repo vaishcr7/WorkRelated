@@ -46,4 +46,7 @@ export class AddressComponent implements OnInit {
   gotoCardsSection(){
     this.router.navigateByUrl('/cards');
   }
+  editAccount(){
+    this.router.navigateByUrl('/editAccount');
+  }
 }

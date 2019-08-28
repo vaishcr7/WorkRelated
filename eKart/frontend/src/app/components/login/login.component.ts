@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       name:['',[Validators.required,Validators.pattern('([a-zA-Z]{1,})')]],
       mobileNumber:['',Validators.required],
       emailAddress:['',[Validators.email,Validators.required]],
-      password:['',[Validators.required,Validators.pattern('[a-z]{1,}[A-Z ]{1,}[0-9]{1,}[\\\.\*\?\^\{\}\|\$]{1,}')]],//this.testValidator]],
+      password:['',[Validators.required,Validators.pattern('[a-z]{1,}[A-Z ]{1,}[0-9]{1,}[\\\.\*\?\^\{\}\|\$]{1,}[a-zA-Z0-9\\\.\*\?\^\{\}\|\$]{0,}')]],
       confirmPassword:['',Validators.required]
     }
     // , {validator: this.checkPasswords }

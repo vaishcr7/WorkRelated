@@ -1,0 +1,28 @@
+<div>
+    <br>
+    <mat-card>
+      <section class="mat-typography">
+        <h3>Update Account</h3>
+      </section>
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]="updateForm" class="edit-form">
+         <mat-form-field class="field-full-width">
+            <input matInput placeholder="Name" formControlName="name" #name>
+          </mat-form-field>
+          <mat-form-field class="field-full-width">
+            <input matInput placeholder="MobileNumber" formControlName="mobileNumber" #mobileNumber>
+          </mat-form-field>
+          <mat-form-field class="field-full-width">
+            <input matInput placeholder="Email Id" formControlName="emailId"  #emailId>
+          </mat-form-field>
+          <mat-form-field class="field-full-width">
+            <input matInput placeholder="Password" formControlName="password" #password>
+          </mat-form-field>
+        <mat-divider></mat-divider>
+        <br><br>
+        <button mat-raised-button color="accent" routerLink="/addresses">Back</button>&nbsp;
+        <button type="button" (click)="updateAccountDetails(name.value,password.value,emailId.value,mobileNumber.value)" [disabled]="updateForm.pristine || updateForm.invalid" mat-raised-button color="primary">Save</button>
+      </form>
+    </mat-card>
+  </div>

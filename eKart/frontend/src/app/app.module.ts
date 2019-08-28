@@ -26,6 +26,7 @@ import { EditAddressComponent } from './components/edit-address/edit-address.com
 import { CardListComponent } from './components/card-list/card-list.component';
 import { CreateCardComponent } from './components/create-card/create-card.component';
 import { EditCardComponent } from './components/edit-card/edit-card.component';
+import { EditAccountComponent } from './components/edit-account/edit-account.component';
 enableProdMode();
 
 const routes:Routes=[
@@ -36,6 +37,7 @@ const routes:Routes=[
   {path:'cards',component:CardListComponent},
   {path:'editCard/:id',component:EditCardComponent},
   {path:'createCard',component:CreateCardComponent},
+  {path:'editAccount',component:EditAccountComponent},
   {path:'',redirectTo:'login',pathMatch:'full'}
 ]
 
@@ -50,6 +52,7 @@ const routes:Routes=[
     CardListComponent,
     CreateCardComponent,
     EditCardComponent,
+    EditAccountComponent,
   ],
   imports: [
     BrowserModule,
