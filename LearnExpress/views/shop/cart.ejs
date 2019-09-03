@@ -1,0 +1,39 @@
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="/css/cart.css">
+</head>
+
+<body>
+<%- include('../includes/navigation.ejs')%>
+<main>
+    <%if(products.length>0)
+    {%>
+    <ul class="cart__item-list">
+        <%products.forEach(p=>{%>
+            <!--<li>< p.productData.title> (< p.qty>)</li>-->
+            <!--<li><= p.title> (<= p.cart_item.quantity>)-->
+            <li class="cart_item">
+                <!--<h1><= p.title></h1>-->
+                <h1><%= p.productId.title%></h1> <!--for mongoose-->
+                <h2>Quantity: <%= p.quantity%></h2>
+            <form action="/cart_delete_item" method="post">
+                <!--<input type="hidden" value="<p.productData.id>" name="productId">-->
+                <!--<input type="hidden" value="<= p._id>" name="productId">-->
+                <input type="hidden" value="<%= p.productId._id%>" name="productId"><!-- for mongooses-->
+                <button class="btn" type="submit">Delete</button>
+            </form>
+            </li>
+        <%});
+    %>
+    </ul>
+    <br/>
+    <hr/>
+    <div class="centered">
+        <form action="/create_order" method="post">
+            <button type="submit" class="btn">Order Now!</button>
+        </form>
+    </div>
+    <%}else{%>
+    <h1>No Products in your cart currently.</h1>
+    <%}%>
+</main>
+<%- include('../includes/end.ejs')%>

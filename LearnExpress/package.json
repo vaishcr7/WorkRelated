@@ -1,0 +1,28 @@
+{
+  "name": "learnexpress",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon node-app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-mongodb-session": "^2.2.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.16.2",
+    "http-errors": "~1.6.2",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.5.15",
+    "morgan": "~1.9.0",
+    "mysql2": "^1.6.5",
+    "pug": "^2.0.0-beta11",
+    "sequelize": "^5.2.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
